@@ -12,7 +12,7 @@ export default function CreateUser({ createUserFunction, isLoggedIn}){
     return (
         <>
         <main>
-            <h2 className={styles.CardTitle}>create your profile</h2>
+            <h2 className={styles.CardTitle}>create user</h2>
             <CreateUserForm createUserFunction={createUserFunction}/>
         </main>
         </>

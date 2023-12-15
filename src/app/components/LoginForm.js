@@ -1,4 +1,5 @@
 import styles from "./components.module.css"
+import Link from "next/link"
 
 const LoginForm = ({loginUser}) => {
     return (
@@ -11,7 +12,7 @@ const LoginForm = ({loginUser}) => {
                 <input className={styles.input} type="password" id="password" name="password" placeholder="password" />
 
                 <button className={styles.button} type="submit">login</button>
-                <a href="/createUser" className={styles.suggest}>don't have an account? create one</a>
+                <Link href="/createUser" className={styles.suggest}>don't have an account? create one</Link>
             </form>
         </div>
     )
