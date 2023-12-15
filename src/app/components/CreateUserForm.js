@@ -1,17 +1,20 @@
 import styles from "./components.module.css"
 
-const CreateUserForm= ( {createUser}) => {
+const CreateUserForm= ( {createUserFunction}) => {
     return (
         <div>
-            <h2>Create User Form</h2>
-            <form className={styles.Form} onSubmit={(e) => createUser(e)}> 
-                <label htmlFor="email"> Email </label>
-                <input type="email" id="email" name="email"/>
+            <form className={styles.Form} onSubmit={(e) => createUserFunction(e)}> 
+                <label className={styles.Label}  htmlFor="name">name </label>
+                <input className={styles.input} type="name" id="name" name="name" placeholder="john smith" />
 
-                <label htmlFor="password"> Password</label>
-                <input type="password" id="password" name="password"/>
+                <label className={styles.Label}  htmlFor="email">email </label>
+                <input className={styles.input} type="email" id="email" name="email" placeholder="email" />
+
+                <label className={styles.Label} htmlFor="password">password</label>
+                <input className={styles.input} type="password" id="password" name="password" placeholder="password" />
             
-                <button type="submit">Create User</button>
+                <button className={styles.button} type="submit">create user</button>
+                <a href="/login" className={styles.suggest}>already have one? log in</a>
             </form>
         </div>
     )

@@ -1,28 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kalnia:wght@600&family=Playpen+Sans:wght@500&family=Rubik:wght@600&display=swap');
+
+
 .Header{
-    align-items:center;
-    display:flex;
-    justify-content:flex-end;
-    padding: 10px 25px;
-}
-
-.HeaderNav a{
-    color: black;
-    margin: 0 8px;
-    font-weight: bold;
-    font-size: 22px;
-    text-decoration: none;
-    padding: 3px;
-}
-
-.Form{
+    align-items: center;
+    border-bottom: 5px solid #3d2225;
+    background-color: #3d2225;
+    border-radius: 5px;
     display: flex;
-    flex-direction: column;
-    max-width: 375px;
+    color: white;
+    font-family: 'Kalnia', serif;
+    justify-content: space-between;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.HeaderNav {
+    display: flex;
+}
+
+.ul{
+    list-style-type: none;
+    display: flex;
+    font-family: 'Rubik', sans-serif;
+}
+
+.li {
+    color: white;
+    color:inherit;
+    margin-right: 15px; /* Adjust the spacing between navigation items */
+    font-size: 25px;
+    margin: 40px;
+    text-decoration: none;
+  }
+
+.Name{
+    font-size:40px;
+    margin:40px;
+    text-decoration:none;
+    color:white;
+}
+
+.CardTitle{
+    font-family: 'Kalnia', serif;
+    font-size: 40px;
+    text-align:center;
+    color:#3d2225;
+}
+
+.Form, .UserProfile, .Posts, .PopUps{
+    background-color: #D8BFA4;
+    border-radius: 40px;
+    display: flex;
+    flex-direction:column;
+    float: center;
+    max-width: 400px;
+    margin: auto;
+    padding: 10px 25px;
+    justify-content: center;
 }
 
 .UserProfile{
-    border: 1px solid black;
-    border-radius: 4px;
-    max-width: 375px;
-    padding:20px;
+    float:left;
+    margin: 20px;
+    border: 5px solid #3d2225;
+}
+
+.Posts{
+    float: left;
+    align-items: stretch;
+    grid-gap: 20px;
+    margin: 5px;
+    display:grid;
+    border: 5px solid #3d2225;
+}
+
+.PopUps{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #3d2225;
+    display: flex;
+    font-family: 'Rubik', sans-serif;
+    margin:auto;
+    max-width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+.Label, .suggest, .UserInfo{
+    font-family: 'Rubik', sans-serif;
+    font-size: 25px;
+    margin: 7px;
+    color:#3d2225;
+}
+
+
+.suggest{
+    font-size: 17px;
+    text-decoration: underline;
+    text-align: center;
+}
+
+.UserInfo{
+    font-size: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 70px;
+}
+
+.input{
+    border-color:white;
+    border-radius: 70px;
+    padding: 10px;
+    font-family: 'Rubik', serif;
+    font-size: 20px;
+
+}
+
+.button {
+    background-color: white;
+    border: 2px solid #3d2225;
+    border-radius: 70px;
+    color: #3d2225;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Rubik', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 7px;
+    padding: 15px 0px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .button:hover {
+    background-color: #3d2225;
+    color: white;
+  }
+
+.Image{
+    border-radius:70px;
+    max-width: 200px;
 }

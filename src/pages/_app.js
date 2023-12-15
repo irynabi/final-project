@@ -1,6 +1,12 @@
 import {useEffect, useState, useCallback} from 'react';
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {getAuth, 
+        createUserWithEmailAndPassword, 
+        onAuthStateChanged,
+        signInWithEmailAndPassword,
+        signOut
+        } from "firebase/auth";
+import {addDoc, getFirestore, collection} from "firebase/firestore";
 import Header from "@/app/components/Header";
 import firebaseConfig from "@/app/components/firebaseConfig"
 
@@ -12,26 +18,49 @@ export default function MyApp({ Component, pageProps}){
     const [error, setError] = useState(null);
 
 
-    const createUser = useCallback(
-        (e) => {
+    const createUserFunction = useCallback(
+        async(e) => {
             e.preventDefault();
+            const name = e.currentTarget.name.value
             const email = e.currentTarget.email.value;
             const password = e.currentTarget.password.value;
+            const db = getFirestore();
             const auth = getAuth();
-            createUserWithEmailAndPassword(auth, email, password)
+            let user;
+            await createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    const user = userCredential.user
-                    setIsLoggedIn(true);
-                    setUserInformation(user);
-                    setError(null);
+                    user = userCredential.user
+                    console.log(user)
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     console.warn({error, errorCode, errorMessage});
-                    setError(errorMessage);
+                    return setError(errorMessage);
                     });
-        }, [setError, setIsLoggedIn, setUserInformation]);
+            if (user){
+            //Create User reference in firestore
+                await addDoc(collection(db, "users"), {
+                    name: name|| null,
+                    email: email || null,
+                    userId: user?.uid || null,
+                })
+                    .then(() => {
+                        const userToSet = {...user, name}
+                        setIsLoggedIn(true);
+                        setUserInformation(userToSet);
+                        setError(null);
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        console.warn({error, errorCode, errorMessage});
+                        setError(errorMessage);
+                        });
+            }
+        },
+            [setError, setIsLoggedIn, setUserInformation]);
+
 
 
     const loginUser = useCallback(
@@ -42,7 +71,7 @@ export default function MyApp({ Component, pageProps}){
             const auth = getAuth()
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    const user = userCredential.user
+                    const user = userCredential.user;
                     setIsLoggedIn(true);
                     setUserInformation(user);
                     setError(null);
@@ -101,7 +130,7 @@ export default function MyApp({ Component, pageProps}){
         <Header isLoggedIn={isLoggedIn} logoutUser={logoutUser} />
         <Component
             {...pageProps}
-            createUser={createUser}
+            createUserFunction={createUserFunction}
             isLoggedIn={isLoggedIn}
             loginUser={loginUser}
             userInformation={userInformation}

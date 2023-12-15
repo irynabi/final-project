@@ -1,8 +1,9 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import styles from "@/app/components/components.module.css";
 import CreateUserForm from "@/app/components/CreateUserForm";
 
-export default function CreateUser({ createUser, isLoggedIn}){
+export default function CreateUser({ createUserFunction, isLoggedIn}){
     const router = useRouter();
     useEffect(() => {
         if (isLoggedIn) router.push("/");
@@ -11,8 +12,8 @@ export default function CreateUser({ createUser, isLoggedIn}){
     return (
         <>
         <main>
-            <h1> Create User</h1>
-            <CreateUserForm createUser={createUser}/>
+            <h2 className={styles.CardTitle}>create your profile</h2>
+            <CreateUserForm createUserFunction={createUserFunction}/>
         </main>
         </>
     );
